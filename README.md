@@ -14,7 +14,7 @@ npm install react-hooks-state-context
 
 # Usage
 
-## Create store.
+## Create store
 
 ```js
 import { createStore } from 'react-hooks-state-context';
@@ -80,7 +80,7 @@ const actions = {
 export default createStore(initialState, actions);
 ```
 
-## Add provider.
+## Add provider
 
 ```js
 import React from 'react';
