@@ -188,7 +188,7 @@ export default connect(
 
 ## Docs
 
-| Function                            | Descrption                                                                                                                                                                                                                                                              |
+| Function                            | Description                                                                                                                                                                                                                                                             |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | createStore(initialState, actions); | **initialState**: Object with the initial state. <br><br> **actions**: Object with all actions functions, separate per modules.                                                                                                                                         |
 | connect(Component, funcDeps);       | **Component**: Component to be connected. <br><br> **funcDeps**: Properties of the global state that when altered will re-render the component. It must be a function that receives the state as argument and return a array with the properties that must be listened. |
