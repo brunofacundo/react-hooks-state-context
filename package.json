@@ -1,6 +1,6 @@
 {
     "name": "react-hooks-state-context",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "dist/index.js",
     "repository": "https://github.com/BrunoFacundo/react-hooks-state-context.git",
     "author": "Bruno Facundo <brunofe95@gmail.com>",
