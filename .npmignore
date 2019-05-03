@@ -1,0 +1,8 @@
+/node_modules
+/src
+.gitignore
+.babelrc
+.editorconfig
+yarn.lock
+*.log
+*.tgz
