@@ -19,6 +19,17 @@ npm install react-hooks-state-context
 ```js
 import { createStore } from 'react-hooks-state-context';
 
+const initialState = {};
+const actions = {};
+
+export default createStore(initialState, actions);
+```
+
+Example:
+
+```js
+import { createStore } from 'react-hooks-state-context';
+
 const initialState = {
     user: {
         name: '',
@@ -72,6 +83,23 @@ export default createStore(initialState, actions);
 ## Add provider.
 
 ```js
+import React from 'react';
+import { Provider } from 'react-hooks-state-context';
+
+export default function App() {
+    return (
+        <Provider store={store}>
+            {/* ComponentA */}
+            {/* ComponentB */}
+            {/* Other components */}
+        </Provider>
+    );
+}
+```
+
+Example:
+
+```js
 import React, { Fragment } from 'react';
 import Loading from './Loading';
 import UserInfo from './UserInfo';
@@ -92,6 +120,22 @@ export default function App() {
 ```
 
 ## Connect component
+
+```js
+import React from 'react';
+import { connect } from 'react-hooks-state-context';
+
+function ComponentA({ state, actions }) {
+    return <div>ComponentA</div>;
+}
+
+export default connect(
+    Loading,
+    state => [] // add props listener
+);
+```
+
+Example:
 
 ```js
 import React from 'react';
@@ -147,3 +191,4 @@ export default connect(
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | createStore(initialState, actions); | **initialState**: Object with the initial state. <br><br> **actions**: Object with all actions functions, separate per modules.                                                                                                                                         |
 | connect(Component, funcDeps);       | **Component**: Component to be connected. <br><br> **funcDeps**: Properties of the global state that when altered will re-render the component. It must be a function that receives the state as argument and return a array with the properties that must be listened. |
+| &lt;Provider store={store} / &gt;   | **store**: Object store.                                                                                                                                                                                                                                                |
