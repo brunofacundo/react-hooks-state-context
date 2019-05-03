@@ -1,6 +1,5 @@
-import { createContext, useContext, useMemo } from 'react';
-
-export const Context = createContext();
+import { useContext, useMemo } from 'react';
+import { Context } from './Provider';
 
 export function createStore(initialState = {}, actions = {}) {
     return {
@@ -19,8 +18,9 @@ export function connect(Component, funcDeps) {
         }
 
         return useMemo(() => {
+            props = { ...props, ...state };
             return (
-                <Component {...props} state={state} actions={actions}>
+                <Component {...props} actions={actions}>
                     {props.children}
                 </Component>
             );

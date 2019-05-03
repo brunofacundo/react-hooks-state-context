@@ -1,5 +1,6 @@
-import React from 'react';
-import { Context } from './Utils';
+import React, { createContext, useState } from 'react';
+
+export const Context = createContext();
 
 export default function Provider({ children, store }) {
     const { initialState, actions } = store;
