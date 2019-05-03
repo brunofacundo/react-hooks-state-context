@@ -1,14 +1,57 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, PureComponent, useContext, useMemo } from 'react';
 
-export const Context = createContext();
+const Context = createContext();
 
-export default function Provider({ children, store }) {
-    const { initialState, actions } = store;
-    const [state, setState] = useState(initialState);
+export class Provider extends PureComponent {
+    constructor(props) {
+        super(props);
 
-    for (let [name, func] of Object.entries(actions)) {
-        actions[name] = (...params) => func(state, setState, ...params);
+        const { store } = props;
+        const { modules } = store;
+
+        this.state = store.initialState;
+        this.actions = modules;
+
+        for (let actions of Object.values(modules)) {
+            for (let [actionName, actionFunc] of Object.entries(actions)) {
+                actions[actionName] = (...params) =>
+                    actionFunc(
+                        this.state,
+                        state => {
+                            return new Promise(resolve => {
+                                this.setState(state, () => {
+                                    resolve(this.state);
+                                });
+                            });
+                        },
+                        ...params
+                    );
+            }
+        }
     }
 
-    return <Context.Provider value={{ state, actions }}>{children}</Context.Provider>;
+    render() {
+        const { children } = this.props;
+
+        return <Context.Provider value={{ state: this.state, actions: this.actions }}>{children}</Context.Provider>;
+    }
+}
+
+export function connect(Component, funcDeps) {
+    return function(props) {
+        const { state, actions } = useContext(Context);
+
+        let deps = [];
+        if (funcDeps != null) {
+            deps = funcDeps(state);
+        }
+
+        return useMemo(() => {
+            return (
+                <Component {...props} state={state} actions={actions}>
+                    {props.children}
+                </Component>
+            );
+        }, deps);
+    };
 }
