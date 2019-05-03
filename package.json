@@ -13,12 +13,10 @@
     "keywords": [
         "react",
         "react-hooks",
-        "hooks",
         "state",
         "global state",
         "context",
-        "context-api",
-        "redux"
+        "context-api"
     ],
     "devDependencies": {
         "@babel/cli": "^7.4.4",

@@ -1,6 +1,8 @@
 # react-hooks-state-context
 
-# Installing
+Simple global state for React with Context API
+
+# Install
 
 ```bash
 yarn add react-hooks-state-context
