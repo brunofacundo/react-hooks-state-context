@@ -10,6 +10,16 @@
         "build-watch": "babel src -d dist -w",
         "prepublish": "yarn run build"
     },
+    "keywords": [
+        "react",
+        "react-hooks",
+        "hooks",
+        "state",
+        "global state",
+        "context",
+        "context-api",
+        "redux"
+    ],
     "devDependencies": {
         "@babel/cli": "^7.4.4",
         "@babel/core": "^7.4.4",
