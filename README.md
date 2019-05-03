@@ -84,6 +84,7 @@ export default createStore(initialState, actions);
 
 ```js
 import React from 'react';
+import store from './store';
 import { Provider } from 'react-hooks-state-context';
 
 export default function App() {
