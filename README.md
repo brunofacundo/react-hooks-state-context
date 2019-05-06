@@ -11,7 +11,7 @@ yarn add react-hooks-state-context
 or
 
 ```bash
-npm install react-hooks-state-context
+npm install react-hooks-state-context --save
 ```
 
 # Usage
@@ -27,7 +27,8 @@ const actions = {};
 export default createStore(initialState, actions);
 ```
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```js
 import { createStore } from 'react-hooks-state-context';
@@ -82,6 +83,8 @@ const actions = {
 export default createStore(initialState, actions);
 ```
 
+</details>
+
 ## Add provider
 
 ```js
@@ -100,7 +103,8 @@ export default function App() {
 }
 ```
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```js
 import React, { Fragment } from 'react';
@@ -122,6 +126,8 @@ export default function App() {
 }
 ```
 
+</details>
+
 ## Connect component
 
 ```js
@@ -138,7 +144,8 @@ export default connect(
 );
 ```
 
-Example:
+<details>
+<summary>Example</summary>
 
 ```js
 import React from 'react';
@@ -157,6 +164,8 @@ export default connect(
     state => [state.loading]
 );
 ```
+
+</details>
 
 ## Call actions
 
