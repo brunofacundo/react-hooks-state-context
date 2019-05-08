@@ -16,7 +16,9 @@ export class Provider extends PureComponent {
             for (let [actionName, actionFunc] of Object.entries(actions)) {
                 actions[actionName] = (...params) =>
                     actionFunc(
-                        this.state,
+                        () => {
+                            return this.state;
+                        },
                         state => {
                             return new Promise(resolve => {
                                 this.setState(state, () => {

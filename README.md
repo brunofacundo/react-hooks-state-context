@@ -46,14 +46,14 @@ const initialState = {
 
 const actions = {
     user: {
-        setName: (state, setState, name) => {
+        setName: (getState, setState, name) => {
             setState({
                 user: {
                     name
                 }
             });
         },
-        setInfo: (state, setState, name, age) => {
+        setInfo: (getState, setState, name, age) => {
             setState({
                 user: {
                     name,
@@ -63,14 +63,14 @@ const actions = {
         }
     },
     loading: {
-        show: (state, setState) => {
+        show: (getState, setState) => {
             setState({
                 loading: {
                     opened: true
                 }
             });
         },
-        hide: (state, setState) => {
+        hide: (getState, setState) => {
             setState({
                 loading: {
                     opened: false
