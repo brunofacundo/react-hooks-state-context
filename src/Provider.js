@@ -7,29 +7,41 @@ export class Provider extends PureComponent {
         super(props);
 
         const { store } = props;
-        const { modules } = store;
 
         this.state = store.initialState;
-        this.actions = modules;
+        this.actions = store.actions;
 
-        for (let actions of Object.values(modules)) {
-            for (let [actionName, actionFunc] of Object.entries(actions)) {
-                actions[actionName] = (...params) =>
-                    actionFunc(
-                        () => {
-                            return this.state;
-                        },
-                        state => {
-                            return new Promise(resolve => {
-                                this.setState(state, () => {
-                                    resolve(this.state);
-                                });
-                            });
-                        },
-                        ...params
-                    );
+        this.createActions();
+    }
+
+    createActions() {
+        for (let [key, subModule] of Object.entries(this.actions)) {
+            if (typeof subModule == 'function') {
+                this.actions[key] = this.createAction(subModule);
+            } else {
+                for (let [actionName, actionFunc] of Object.entries(subModule)) {
+                    subModule[actionName] = this.createAction(actionFunc);
+                }
             }
         }
+    }
+
+    createAction(callback) {
+        const getState = () => {
+            return this.state;
+        };
+
+        const setState = state => {
+            return new Promise(resolve => {
+                this.setState(state, () => {
+                    resolve(this.state);
+                });
+            });
+        };
+
+        return (...params) => {
+            return callback(getState, setState, ...params);
+        };
     }
 
     render() {

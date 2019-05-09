@@ -107,7 +107,7 @@ export default function App() {
 <summary>Example</summary>
 
 ```js
-import React, { Fragment } from 'react';
+import React from 'react';
 import Loading from './Loading';
 import UserInfo from './UserInfo';
 import store from './store';
@@ -116,11 +116,9 @@ import { Provider } from 'react-hooks-state-context';
 export default function App() {
     return (
         <Provider store={store}>
-            <Fragment>
-                <Loading />
-                <UserInfo />
-                {/* Other components */}
-            </Fragment>
+            <Loading />
+            <UserInfo />
+            {/* Other components */}
         </Provider>
     );
 }
@@ -171,22 +169,24 @@ export default connect(
 
 ```js
 import React from 'react';
-import Api from './Api';
 import { connect } from 'react-hooks-state-context';
 
 function UserInfo({ state, actions }) {
     if (state.user.name == '') {
         actions.loading.show();
-        Api.getUserInfo().then(userInfo => {
-            actions.user.setUserInfo(userInfo.name, userInfo.age);
+
+        // Call your API.
+        setTimeout(() => {
+            actions.user.setInfo('João', 45);
             actions.loading.hide();
-        });
+        }, 2000);
     }
 
     return (
         <div>
             <span>Name: {state.user.name}</span>
-            <span>Age:{state.user.age}</span>
+            <br />
+            <span>Age: {state.user.age}</span>
         </div>
     );
 }

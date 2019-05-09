@@ -1,4 +1,4 @@
 import { connect, Provider } from './Provider';
-import { createStore } from './Utils';
+import { createStore } from './CreateStore';
 
 export { Provider, createStore, connect };
